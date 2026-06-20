@@ -6,6 +6,11 @@ class LoginPage:
     PASSWORD = (By.NAME,'password')
     LOGIN_BUTTON = (By.XPATH,'//button[@type="submit"]')
 
+    ERROR_MESSAGE = (
+    By.XPATH,
+    "//p[contains(@class,'alert-content-text')]"
+)
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -22,3 +27,9 @@ class LoginPage:
         self.enter_username(username)
         self.enter_password(password)
         self.click_login_button()
+
+    def get_error_message(self):
+
+        return self.driver.find_element(
+        *self.ERROR_MESSAGE
+    ).text
